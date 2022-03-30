@@ -20,6 +20,25 @@ EVEN = "even"
 PRIME = "prime"
 
 
+def is_odd(n):
+    return n % 2
+
+
+def is_even(n):
+    return n % 2 == 0
+
+
+def is_prime(n):
+    if n < 2:
+        return False
+    if n % 2 == 0 and n != 2:
+        return False
+    d = 3
+    while d * d <= n and n % d != 0:
+        d += 2
+    return d * d > n
+
+
 def filter_numbers(numbers_list, filter_type):
     """
     функция, которая на вход принимает список из целых чисел,
@@ -32,6 +51,21 @@ def filter_numbers(numbers_list, filter_type):
     <<< [2, 4]
     """
     if filter_type == ODD:
-        return [number for number in numbers_list if number % 2 != 0]
+        return list(filter(is_odd, numbers_list))
     if filter_type == EVEN:
-        return [number for number in numbers_list if number % 2 == 0]
+        return list(filter(is_even, numbers_list))
+    if filter_type == PRIME:
+        return list(filter(is_prime, numbers_list))
+
+if __name__ == "__main__":
+    # pow_numbers = power_numbers(1, 7, 19, -15, 25, 2, -1)
+    # print(pow_numbers)
+    #
+    # odd_numbers = filter_numbers([1, 2, 100, 25, 199], ODD)
+    # print(odd_numbers)
+    #
+    # even_numbers = filter_numbers([1, 2, 100, 25, 199], EVEN)
+    # print(even_numbers)
+
+    prime_numbers = filter_numbers([0,1,2,3,4,5,6,7,8,9,10,11], PRIME)
+    print(prime_numbers)
