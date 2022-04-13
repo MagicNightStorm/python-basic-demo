@@ -3,7 +3,7 @@ from homework_02.engine import Engine
 
 
 class Car(Vehicle):
-    engine = Engine(0, 0)
+    engine: Engine
 
-    def set_engine(self, value):
-        self.engine = value
+    def set_engine(self, engine):
+        self.engine = engine
